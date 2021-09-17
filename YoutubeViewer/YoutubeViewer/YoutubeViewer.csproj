@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>YoutubeViewer</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro" Version="2.4.7" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="1.7.4" />
+    <PackageReference Include="Prism.DryIoc" Version="8.0.0.1909" />
+    <PackageReference Include="ReactiveProperty.WPF" Version="7.12.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\YoutubeViewer.Infrastructure\YoutubeViewer.Infrastructure.csproj" />
+    <ProjectReference Include="..\Modules\YoutubeViewer.Modules.PopupContents\YoutubeViewer.Modules.PopupContents.csproj" />
+    <ProjectReference Include="..\Modules\YoutubeViewer.Modules.YoutubeContent\YoutubeViewer.Modules.YoutubeContent.csproj" />
+    <ProjectReference Include="..\YoutubeViewer.Core\YoutubeViewer.Core.csproj" />
+    <ProjectReference Include="..\Services\YoutubeViewer.Services.Interfaces\YoutubeViewer.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\Services\YoutubeViewer.Services\YoutubeViewer.Services.csproj" />
+  </ItemGroup>
+</Project>
