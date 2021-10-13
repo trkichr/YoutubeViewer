@@ -2,6 +2,8 @@
 using Prism.Ioc;
 using Prism.Modularity;
 using System.Windows;
+using YoutubeViewer.Modules.PopupContents;
+using YoutubeViewer.Modules.YoutubeContent;
 using YoutubeViewer.Services;
 using YoutubeViewer.Services.Interfaces;
 using YoutubeViewer.Views;
@@ -33,7 +35,8 @@ namespace YoutubeViewer
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-            moduleCatalog.AddModule<ModuleNameModule>();
+            moduleCatalog.AddModule<YoutubeContentModule>();
+            moduleCatalog.AddModule<PopupContentsModule>();
         }
     }
 }

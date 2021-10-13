@@ -36,7 +36,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeViewer.Infrastructur
 		{E88C116E-D859-40C4-BF9B-C4C547222350} = {E88C116E-D859-40C4-BF9B-C4C547222350}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoutubeViewer.Modules.YoutubeContent.Test", "YoutubeViewer\Tests\YoutubeViewer.Modules.YoutubeContent.Test\YoutubeViewer.Modules.YoutubeContent.Test.csproj", "{4F0A78BD-6369-4238-ACE9-953193D9E25C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YoutubeViewer.Modules.YoutubeContent.Test", "YoutubeViewer\Tests\YoutubeViewer.Modules.YoutubeContent.Test\YoutubeViewer.Modules.YoutubeContent.Test.csproj", "{4F0A78BD-6369-4238-ACE9-953193D9E25C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BB308830-1A81-4278-9A75-F7845347C606} = {BB308830-1A81-4278-9A75-F7845347C606}
 		{27D84B52-67B0-4E2B-8ED4-5C0FCFE659BE} = {27D84B52-67B0-4E2B-8ED4-5C0FCFE659BE}

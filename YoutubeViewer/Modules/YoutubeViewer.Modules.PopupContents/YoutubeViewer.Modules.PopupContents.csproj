@@ -11,4 +11,9 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Infrastructure\YoutubeViewer.Infrastructure\YoutubeViewer.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Services\YoutubeViewer.Services.Interfaces\YoutubeViewer.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\..\YoutubeViewer.Core\YoutubeViewer.Core.csproj" />
+  </ItemGroup>
 </Project>
