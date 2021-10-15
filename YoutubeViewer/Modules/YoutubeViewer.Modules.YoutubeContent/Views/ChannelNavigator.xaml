@@ -1,9 +1,101 @@
 ﻿<UserControl x:Class="YoutubeViewer.Modules.YoutubeContent.Views.ChannelNavigator"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Interactivity="clr-namespace:Reactive.Bindings.Interactivity;assembly=ReactiveProperty.WPF"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:properties="clr-namespace:YoutubeViewer.Modules.YoutubeContent.Properties"
              xmlns:prism="http://prismlibrary.com/"             
              prism:ViewModelLocator.AutoWireViewModel="True">
-    <Grid>
-            
+    <UserControl.Resources>
+        <DataTemplate
+            x:Key="ItemTemplate"
+            DataType="Core:ChannelEntity">
+            <Grid Height="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.Style>
+                    <Style TargetType="Grid">
+                        <Setter Property="Tag" Value="{Binding Path=DataContext, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"/>
+                    </Style>
+                </Grid.Style>
+                <Ellipse
+                    Grid.Column="0"
+                    Height="45" Width="45"  Margin="0,2,4,0">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="{Binding AvatarImage}" Stretch="Fill" />
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock Grid.Column="1" Style="{StaticResource ListTitleStyle}" Text="{Binding Title}" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <ListView
+                Background="AliceBlue"
+                ItemsSource="{Binding ChannelList}"
+                ItemTemplate="{StaticResource ItemTemplate}"
+                SelectedItem="{Binding SelectedChannel.Value}"
+                SelectedIndex="{Binding SelectedIndex.Value}"
+                FontSize="25"
+                SelectionMode="Single">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <Interactivity:EventToReactiveCommand Command="{Binding ChannelSelectionChangedCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button
+                    Command="{Binding AddChannelCommand}"
+                    Style="{StaticResource ChannelListButtonStyle}"
+                    ToolTip="{x:Static properties:Resources.AddChannelButtonTooltip}">
+                    <TextBlock
+                        Style="{StaticResource SmallIconStyle}"
+                        Text="&#xE8FA;" />
+                </Button>
+                <Button
+                    Command="{Binding RemoveChannelCommand}"
+                    Style="{StaticResource ChannelListButtonStyle}"
+                    ToolTip="{x:Static properties:Resources.RemoveChannelButtonTooltip}">
+                    <TextBlock
+                        Style="{StaticResource SmallIconStyle}"
+                        Text="&#xE74D;" />
+                </Button>
+                <Button
+                    Command="{Binding EditChannelCommand}"
+                    Style="{StaticResource ChannelListButtonStyle}"
+                    ToolTip="{x:Static properties:Resources.EditChannelButtonTooltip}">
+                    <TextBlock
+                        Style="{StaticResource SmallIconStyle}"
+                        Text="&#xE70F;" />
+                </Button>
+                <Button
+                    Command="{Binding UpChannelCommand}"
+                    Style="{StaticResource ChannelListButtonStyle}"
+                    ToolTip="{x:Static properties:Resources.UpChannelButtonTooltip}">
+                    <TextBlock
+                        Style="{StaticResource SmallIconStyle}"
+                        Text="&#xE74A;" />
+                </Button>
+                <Button
+                    Command="{Binding DownChannelCommand}"
+                    Style="{StaticResource ChannelListButtonStyle}"
+                    ToolTip="{x:Static properties:Resources.DownChannelButtonTooltip}">
+                    <TextBlock
+                        Style="{StaticResource SmallIconStyle}"
+                        Text="&#xE74B;" />
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>
