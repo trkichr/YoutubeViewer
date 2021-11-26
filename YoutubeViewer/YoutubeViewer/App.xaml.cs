@@ -31,6 +31,9 @@ namespace YoutubeViewer
             var factory = new NLog.Extensions.Logging.NLogLoggerFactory();
             ILogger logger = factory.CreateLogger("");
             containerRegistry.RegisterInstance(logger);
+
+            containerRegistry.RegisterSingleton<IMessageService, MessageService>();
+            containerRegistry.Register<ISystemService, SystemService>();
         }
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
