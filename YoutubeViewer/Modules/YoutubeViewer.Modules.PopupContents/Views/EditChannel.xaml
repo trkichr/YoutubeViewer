@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="YoutubeViewer.Modules.PopupContents.Views.EditChannel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"             
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             Height="200" Width="370">
+    <Grid Background="Silver">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*" />
+            <RowDefinition Height="0.25*" />
+            <RowDefinition Height="0.25*" />
+            <RowDefinition Height="0.25*" />
+            <RowDefinition Height="0.25*" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <TextBlock Text="タイトル：" Style="{StaticResource MediumTextStyle}" Width="100"/>
+            <TextBox Text="{Binding Title.Value, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource DialogTextBoxStyle}" Width="250"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1">
+            <TextBlock Text="グループ：" Style="{StaticResource MediumTextStyle}" Width="100"/>
+            <TextBox Text="{Binding Group.Value}"  Style="{StaticResource DialogTextBoxStyle}" IsEnabled="False" Width="250"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="2">
+            <TextBlock Text="UrlId：" Style="{StaticResource MediumTextStyle}" Width="100"/>
+            <TextBox Text="{Binding UrlId.Value, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"  Style="{StaticResource DialogTextBoxStyle}" Width="250"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="3">
+            <TextBlock Text="AvatarId：" Style="{StaticResource MediumTextStyle}" Width="100"/>
+            <TextBox Text="{Binding AvatarId.Value, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"  Style="{StaticResource DialogTextBoxStyle}" Width="250"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+            <Button Content="OK" Command="{Binding OkCommand}" Style="{StaticResource DialogButton}" />
+            <Button Content="キャンセル" Command="{Binding CancelCommand}" Style="{StaticResource DialogButton}" />
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -13,7 +13,8 @@ namespace YoutubeViewer.Modules.PopupContents
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            containerRegistry.RegisterForNavigation<Views.AddChannel>();
+            containerRegistry.RegisterForNavigation<Views.EditChannel>();
         }
     }
 }
