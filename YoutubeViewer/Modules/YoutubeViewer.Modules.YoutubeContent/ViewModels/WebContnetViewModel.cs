@@ -69,7 +69,7 @@ namespace YoutubeViewer.Modules.YoutubeContent.ViewModels
             return false;
         }
 
-        private void WebNavigationCompleted(CoreWebView2NavigationCompletedEventArgs e)
+        public void WebNavigationCompleted(CoreWebView2NavigationCompletedEventArgs e)
         {
             LoadingVisibility.Value = Visibility.Collapsed;
             if (e != null && !e.IsSuccess)

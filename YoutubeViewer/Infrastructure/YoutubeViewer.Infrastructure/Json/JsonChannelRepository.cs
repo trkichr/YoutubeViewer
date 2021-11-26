@@ -84,7 +84,7 @@ namespace YoutubeViewer.Infrastructure.Json
         public void Replace(ChannelEntity channel)
         {
             var savedChannels = GetAll().ToList();
-            var savedChannel = savedChannels.FirstOrDefault(x => x.Equals(channel));
+            var savedChannel = savedChannels.FirstOrDefault(x => x.Site.Id == channel.Site.Id);
             if (savedChannel != null)
             {
                 savedChannels.Remove(savedChannel);

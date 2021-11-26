@@ -43,7 +43,7 @@
                 ItemsSource="{Binding ChannelList}"
                 ItemTemplate="{StaticResource ItemTemplate}"
                 SelectedItem="{Binding SelectedChannel.Value}"
-                SelectedIndex="{Binding SelectedIndex.Value}"
+                SelectedIndex="{Binding SelectedIndex.Value, UpdateSourceTrigger=PropertyChanged}"
                 FontSize="25"
                 SelectionMode="Single">
                 <i:Interaction.Triggers>

@@ -94,7 +94,7 @@ namespace YoutubeViewer.Modules.YoutubeContent.ViewModels
                 RegionNames.ContentRegion, nameof(WebContnet), np);
         }
 
-        private void ChannelSelectionChanged(SelectionChangedEventArgs e)
+        public void ChannelSelectionChanged(SelectionChangedEventArgs e)
         {
             if (e?.AddedItems.Count > 0)
             {
@@ -130,7 +130,7 @@ namespace YoutubeViewer.Modules.YoutubeContent.ViewModels
             {
                 ChannelEntity channel = GetDialogResult(x);
                 if (channel != null
-                    && _channelRepository.GetAll().Contains(channel))
+                    && _channelRepository.GetAll().Contains(SelectedChannel.Value))
                 {
                     _channelRepository.Replace(channel);
                     NavigationParameters np = new NavigationParameters();
@@ -169,7 +169,7 @@ namespace YoutubeViewer.Modules.YoutubeContent.ViewModels
         }
 
         private IDialogService _ds;
-        private IChannelRepository _channelRepository;
+        public IChannelRepository _channelRepository;
         private string _selectedChannelGroup;
         public ObservableCollection<ChannelEntity> ChannelCollection { get; private set; }
         public ReadOnlyReactiveCollection<ChannelEntity> ChannelList { get; }

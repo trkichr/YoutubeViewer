@@ -10,7 +10,11 @@ namespace YoutubeViewer.Infrastructure
         public static IChannelRepository CreateChannel()
         {
 #if DEBUG
-            if (Shared.IsFake)
+            if (Shared.IsActualFiles)
+            {
+                return new JsonChannelRepository();
+            }
+            else
             {
                 return new FakeChannelRepository();
             }

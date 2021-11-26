@@ -10,8 +10,7 @@ namespace YoutubeViewer.Infrastructure.Fake
 {
     public class FakeChannelRepository : IChannelRepository
     {
-
-        public IEnumerable<ChannelEntity> GetAll()
+        public FakeChannelRepository()
         {
             var op = new JsonSerializerOptions()
             {
@@ -21,53 +20,56 @@ namespace YoutubeViewer.Infrastructure.Fake
             };
             using (StreamReader sr = new StreamReader("channel_fake.json"))
             {
-                return JsonSerializer.Deserialize<IEnumerable<ChannelEntityCreator>>(sr.ReadToEnd(), op)
-                    .Select(x => x.GetChannelEntity());
+                _channelList = JsonSerializer.Deserialize<IEnumerable<ChannelEntityCreator>>(sr.ReadToEnd(), op)
+                    .Select(x => x.GetChannelEntity())
+                    .ToList();
             }
+        }
+
+        public IEnumerable<ChannelEntity> GetAll()
+        {
+            return _channelList;
         }
 
         public IEnumerable<ChannelEntity> GetAll(string group)
         {
-            var op = new JsonSerializerOptions()
-            {
-                PropertyNameCaseInsensitive = false,
-                ReadCommentHandling = JsonCommentHandling.Skip,
-                AllowTrailingCommas = true,
-            };
-            using (StreamReader sr = new StreamReader("channel_fake.json"))
-            {
-                return JsonSerializer.Deserialize<IEnumerable<ChannelEntityCreator>>(sr.ReadToEnd(), op)
-                .Where(x => x.Group == group)
-                .Select(x => x.GetChannelEntity());
-            }
+            return _channelList
+                .Where(x => x.Group == group);
         }
 
         public IEnumerable<string> GetAllGroup()
         {
-            var op = new JsonSerializerOptions()
-            {
-                PropertyNameCaseInsensitive = false,
-                ReadCommentHandling = JsonCommentHandling.Skip,
-                AllowTrailingCommas = true,
-            };
-            using (StreamReader sr = new StreamReader("channel_fake.json"))
-            {
-                return JsonSerializer.Deserialize<IEnumerable<ChannelEntityCreator>>(sr.ReadToEnd(), op)
+            return _channelList
                 .GroupBy(x => x.Group)
                 .Select(x => x.Key);
+        }
+
+        public void Add(ChannelEntity selectedChannel)
+        {
+            if (!_channelList.Contains(selectedChannel))
+            {
+                _channelList.Add(selectedChannel);
             }
         }
 
-        public void Add(ChannelEntity channel)
+        public void Delete(ChannelEntity selectedChannel)
         {
+            if (_channelList.Contains(selectedChannel))
+            {
+                _channelList.Remove(selectedChannel);
+            }
         }
 
-        public void Delete(ChannelEntity channel)
+        public void Replace(ChannelEntity selectedChannel)
         {
+            var channel = _channelList.FirstOrDefault(x => x.Site.Id == selectedChannel.Site.Id);
+            if (channel != null)
+            {
+                _channelList.Remove(channel);
+                _channelList.Add(selectedChannel);
+            }
         }
 
-        public void Replace(ChannelEntity channel)
-        {
-        }
+        List<ChannelEntity> _channelList;
     }
 }
